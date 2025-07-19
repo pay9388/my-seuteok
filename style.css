@@ -17,6 +17,9 @@ body {
 h2 {
   text-align: center;
   color: #333;
+  font-size: 1.4rem;
+  line-height: 1.6;
+  margin-bottom: 30px;
 }
 
 label {
