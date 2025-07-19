@@ -6,7 +6,8 @@ body {
 }
 
 .container {
-  max-width: 400px;
+  width: 90%;
+  max-width: 600px;
   margin: 40px auto;
   padding: 20px;
   background: white;
@@ -18,13 +19,6 @@ h2 {
   text-align: center;
   color: #333;
   font-size: 1.5rem;
-  margin-bottom: 0.3rem;
-}
-
-.author {
-  text-align: right;
-  font-size: 0.85rem;
-  color: #888;
   margin-bottom: 30px;
 }
 
@@ -65,4 +59,11 @@ button:hover {
   font-size: 15px;
   color: #222;
   white-space: pre-line;
+}
+
+footer {
+  margin-top: 40px;
+  font-size: 0.85rem;
+  text-align: right;
+  color: #888;
 }
