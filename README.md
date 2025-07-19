@@ -12,7 +12,7 @@
 |------------------|------|
 | `index.html`     | 사용자 입력 폼과 결과 출력 HTML 페이지 |
 | `script.js`      | 입력값 검증 및 JSON 데이터 검색 로직 |
-| `style.css`      | 반응형 모바일 대응 디자인 |
+| `style.css`      | 반응형 모바일/데스크탑 대응 디자인 |
 | `student_db.json`| 학생 정보 DB (엑셀에서 변환된 JSON 파일) |
 
 ---
@@ -39,9 +39,39 @@ df.to_json("student_db.json", orient="records", force_ascii=False, indent=2)
 
 ---
 
+## 🔐 비밀번호(4자리 숫자) 생성 방법
+
+### ✅ 엑셀 함수 사용 (추천)
+
+비밀번호 열에 다음 함수를 입력하면 각 학생마다 랜덤한 4자리 숫자가 생성됩니다:
+
+```excel
+=RANDBETWEEN(1000, 9999)
+```
+
+> **주의:** 이 함수는 시트가 열릴 때마다 값이 바뀔 수 있으므로,  
+> 생성 후 전체 복사 → "값 붙여넣기"로 **고정**하세요.
+
+---
+
+### ✅ 파이썬으로 자동 생성 (선택)
+
+```python
+import pandas as pd
+import random
+
+df = pd.read_excel("db.xlsx")
+df["비밀번호"] = [f"{random.randint(1000, 9999)}" for _ in range(len(df))]
+df.to_excel("db_with_pw.xlsx", index=False)
+```
+
+이 코드는 `비밀번호` 컬럼이 없는 엑셀 파일에 무작위 4자리 숫자를 생성해 추가합니다.
+
+---
+
 ## ⚠️ 보안 유의사항
 
-- 실제 운영 시 비밀번호는 암호화 저장을 권장합니다.
-- 민감 정보가 외부에 노출되지 않도록 student_db.json 파일을 주기적으로 점검하세요.
+- 실제 운영 시 비밀번호는 외부에 노출되지 않도록 주의하세요.
+- `student_db.json` 파일은 GitHub에 공개되지 않도록 관리해도 좋습니다 (비공개 저장소 사용 등).
 
 ---
