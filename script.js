@@ -1,4 +1,3 @@
-
 async function search() {
   const id = document.getElementById('studentId').value.trim();
   const name = document.getElementById('name').value.trim();
@@ -9,14 +8,17 @@ async function search() {
     const res = await fetch('student_db.json');
     const students = await res.json();
 
-    const student = students.find(s => s.학번 === id && s.이름 === name);
+    const student = students.find(s =>
+      String(s.학번).trim() === id &&
+      String(s.이름).trim() === name
+    );
 
     if (!student) {
       resultDiv.innerText = '일치하는 학생 정보가 없습니다.';
       return;
     }
 
-    if (student.비밀번호 !== password) {
+    if (String(student.비밀번호).trim() !== password) {
       resultDiv.innerText = '비밀번호가 틀렸습니다.';
       return;
     }
