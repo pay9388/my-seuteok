@@ -1,69 +1,197 @@
 
 body {
-  font-family: sans-serif;
+  font-family: 'Pretendard', sans-serif;
   margin: 0;
-  background-color: #f9f9f9;
+  padding: 32px 0;
+  min-height: 100vh;
+  box-sizing: border-box;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .container {
   width: 90%;
   max-width: 600px;
-  margin: 40px auto;
-  padding: 20px;
+  padding: 32px;
+  box-sizing: border-box;
   background: white;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.emblem {
+  text-align: center;
+  font-size: 2.4rem;
+  margin-bottom: 8px;
 }
 
 h2 {
   text-align: center;
-  color: #333;
-  font-size: 1.5rem;
-  margin-bottom: 30px;
+  color: #1f2937;
+  font-size: 1.6rem;
+  margin: 0 0 6px;
+}
+
+.subtitle {
+  text-align: center;
+  color: #6b7280;
+  font-size: 0.95rem;
+  margin: 0 0 28px;
 }
 
 label {
   display: block;
-  margin-bottom: 15px;
-  font-size: 16px;
-  color: #444;
+  margin-bottom: 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #4b5563;
 }
 
 input {
   width: 100%;
-  padding: 10px;
-  font-size: 15px;
-  margin-top: 5px;
+  padding: 12px 14px;
+  font-size: 16px; /* 16px 미만이면 iOS 사파리가 입력칸 탭 시 화면을 강제 확대함 */
+  margin-top: 6px;
   box-sizing: border-box;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  background: #f8f9fb;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 10px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
 }
 
 button {
   width: 100%;
-  padding: 12px;
+  padding: 14px;
+  margin-top: 8px;
   font-size: 16px;
-  background-color: #3b82f6;
+  font-weight: 700;
+  font-family: inherit;
   color: white;
+  background: linear-gradient(135deg, #667eea, #764ba2);
   border: none;
-  border-radius: 6px;
+  border-radius: 10px;
   cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
 }
 
 button:hover {
-  background-color: #2563eb;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.45);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: none;
 }
 
 #result {
-  margin-top: 20px;
+  margin-top: 24px;
   font-size: 15px;
   color: #222;
+}
+
+#result:not(:empty) {
+  animation: fade-in 0.4s ease;
+}
+
+#result.error {
+  padding: 14px 16px;
+  background: #fef2f2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.result-title {
+  margin: 0;
+  font-size: 16px;
+  color: #1f2937;
+}
+
+.semester-title {
+  margin-top: 24px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #e5e7eb;
+  font-weight: 800;
+  font-size: 17px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.subject-title {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 4px 12px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #4f46e5;
+  background: #eef2ff;
+  border-radius: 999px;
+}
+
+.setuk-text {
+  margin-top: 8px;
+  padding: 14px 16px;
+  background: #f8f9fb;
+  border-radius: 10px;
+  line-height: 1.7;
   white-space: pre-line;
 }
 
 footer {
-  margin-top: 40px;
-  font-size: 0.85rem;
-  text-align: right;
-  color: #888;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.footer-badge {
+  display: inline-block;
+  padding: 7px 18px;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.footer-name {
+  font-weight: 800;
+  font-size: 0.9rem;
+  color: #fcd34d;
+  letter-spacing: 0.08em;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 24px 20px;
+  }
+
+  h2 {
+    font-size: 1.35rem;
+  }
 }
